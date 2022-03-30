@@ -14,7 +14,7 @@ function getExternal(pkg) {
 
 function resolveInput(target) {
   const match = (target.import || target).match(/^\.\/dist\/(.*)/)[1];
-  return "src/" + match;
+  return `src/${match}`;
 }
 
 function resolveOutput(target, type, moduleType) {
