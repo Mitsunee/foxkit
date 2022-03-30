@@ -1,0 +1,97 @@
+{
+  "name": "@foxkit/node-util",
+  "version": "0.2.0",
+  "description": "Nodejs Utility ES Modules",
+  "main": "index.js",
+  "repository": "git@github.com:foxkit-js/node-util.git",
+  "author": "Mitsunee",
+  "license": "MIT",
+  "type": "module",
+  "packageManager": "yarn",
+  "exports": {
+    "./fetch": {
+      "import": "./dist/fetch/index.js"
+    },
+    "./fs": {
+      "import": "./dist/fs/index.js"
+    },
+    "./fs-yaml": {
+      "import": "./dist/fs-yaml/index.js"
+    },
+    "./log": {
+      "import": "./dist/log/index.js"
+    },
+    "./path": {
+      "import": "./dist/path/index.js"
+    },
+    "./readline": {
+      "import": "./dist/readline/index.js"
+    }
+  },
+  "scripts": {
+    "format": "prettier -w .",
+    "lint": "eslint .",
+    "prebuild": "eslint .",
+    "build": "rollup -c",
+    "dev": "rollup -c -w",
+    "publish": "rollup -c && clean-publish"
+  },
+  "eslintConfig": {
+    "extends": "@foxkit"
+  },
+  "nano-staged": {
+    "**/*.js": [
+      "eslint",
+      "prettier -w"
+    ],
+    "**/*.{json,md,d.ts}": [
+      "prettier -w"
+    ]
+  },
+  "files": [
+    "dist/",
+    "index.d.ts"
+  ],
+  "clean-publish": {
+    "withoutPublish": true,
+    "tempDir": "../../publish/node-util",
+    "packageManager": "yarn",
+    "fields": [
+      "scripts",
+      "packageManager"
+    ],
+    "files": [
+      "src",
+      "rollup.config.mjs"
+    ]
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "devDependencies": {
+    "@foxkit/eslint-config": "*",
+    "@foxkit/internal": "*",
+    "clean-publish": "^4.0.0",
+    "eslint": "^8.12.0",
+    "eslint-config-prettier": "^8.5.0",
+    "nano-staged": "^0.6.0",
+    "prettier": "^2.6.1",
+    "rollup": "^2.70.1"
+  },
+  "peerDependencies": {
+    "node-fetch": "^2.6.7 || >=3.1.1",
+    "picocolors": "^1.0.0",
+    "yaml": "^1.10.2"
+  },
+  "peerDependenciesMeta": {
+    "node-fetch": {
+      "optional": true
+    },
+    "picocolors": {
+      "optional": true
+    },
+    "yaml": {
+      "optional": true
+    }
+  }
+}

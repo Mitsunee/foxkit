@@ -1,0 +1,16 @@
+{
+  "name": "foxkit-monorepo",
+  "version": "0.0.0",
+  "description": "Monorepo for all foxkit packages",
+  "repository": "Mitsunee/foxkit",
+  "author": "Mitsunee",
+  "license": "MIT",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "devDependencies": {
+    "eslint": "^7.32.0 || >=8.12.0",
+    "eslint-config-prettier": "^8.5.0"
+  }
+}

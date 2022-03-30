@@ -1,0 +1,67 @@
+{
+  "name": "@foxkit/internal",
+  "version": "3.0.0",
+  "description": "Shareable configs used in all foxkit-js repositories",
+  "repository": "git@github.com:foxkit-js/internal.git",
+  "author": "Mitsunee <michelle@mitsunee.com>",
+  "license": "MIT",
+  "type": "module",
+  "exports": {
+    ".": "./index.js",
+    "./prettier": "./prettier.json",
+    "./reset.css": "./css-reset.css"
+  },
+  "scripts": {
+    "format": "prettier -w .",
+    "lint": "eslint .",
+    "publish": "clean-publish"
+  },
+  "eslintConfig": {
+    "extends": "@foxkit"
+  },
+  "nano-staged": {
+    "**/*.js": [
+      "eslint",
+      "prettier -w"
+    ],
+    "**/*.{json,md,d.ts}": [
+      "prettier -w"
+    ]
+  },
+  "files": [
+    "index.js",
+    "prettier.json",
+    "css-reset.css"
+  ],
+  "clean-publish": {
+    "withoutPublish": true,
+    "tempDir": "../../publish/internal",
+    "packageManager": "yarn",
+    "fields": [
+      "scripts",
+      "packageManager"
+    ]
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "devDependencies": {
+    "@foxkit/eslint-config": "*",
+    "clean-publish": "^4.0.0",
+    "eslint": "^8.12.0",
+    "eslint-config-prettier": "^8.5.0",
+    "prettier": "^2.6.1"
+  },
+  "peerDependencies": {
+    "prettier": "^2.6.1",
+    "rollup": "^2.70.1"
+  },
+  "peerDependenciesMeta": {
+    "rollup": {
+      "optional": true
+    },
+    "prettier": {
+      "optional": true
+    }
+  }
+}
