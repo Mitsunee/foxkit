@@ -1,12 +1,17 @@
-const { rules } = require("./rules");
-
-// TODO: typescript
-
 const config = {
   parserOptions: { ecmaVersion: 2021 },
   env: { node: true },
   plugins: [],
-  rules,
+  rules: {
+    "no-unused-vars": ["warn", { varsIgnorePattern: "^_+" }],
+    "no-undef": "error",
+    "prefer-const": "warn",
+    "no-alert": "error",
+    "no-else-return": "warn",
+    "no-fallthrough": ["error", { commentPattern: "break[\\s\\w]*omitted" }],
+    "no-use-before-define": ["error", { variables: true }],
+    "prefer-template": "warn"
+  },
   overrides: [
     {
       files: ["**/*.cjs"],

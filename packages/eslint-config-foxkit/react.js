@@ -1,8 +1,10 @@
-const { rules } = require("./rules/react");
-
-const config = {
+module.exports = {
   plugins: ["react"],
-  rules,
+  rules: {
+    "react/prop-types": "off",
+    "@next/next/no-img-element": "off",
+    "react/jsx-filename-extension": ["error", { extensions: [".jsx", ".tsx"] }]
+  },
   overrides: [
     {
       files: ["**/*.jsx", "**/*.tsx"],
@@ -18,5 +20,3 @@ const config = {
     }
   }
 };
-
-module.exports = config;
