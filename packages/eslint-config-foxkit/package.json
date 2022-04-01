@@ -4,7 +4,7 @@
   "description": "Shareable ESLint config",
   "main": "index.js",
   "repository": "Mitsunee/foxkit",
-  "author": "Mitsunee <michelle@mitsunee.com>",
+  "author": "Mitsunee",
   "license": "MIT",
   "scripts": {
     "format": "prettier -w .",
@@ -39,7 +39,8 @@
     "packageManager": "yarn",
     "fields": [
       "scripts",
-      "packageManager"
+      "packageManager",
+      "nano-staged"
     ]
   },
   "publishConfig": {

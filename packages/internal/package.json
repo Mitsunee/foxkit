@@ -1,9 +1,9 @@
 {
   "name": "@foxkit/internal",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "description": "Shareable configs used in all foxkit-js repositories",
-  "repository": "git@github.com:foxkit-js/internal.git",
-  "author": "Mitsunee <michelle@mitsunee.com>",
+  "repository": "Mitsunee/foxkit",
+  "author": "Mitsunee",
   "license": "MIT",
   "type": "module",
   "exports": {
@@ -39,7 +39,8 @@
     "packageManager": "yarn",
     "fields": [
       "scripts",
-      "packageManager"
+      "packageManager",
+      "nano-staged"
     ]
   },
   "publishConfig": {
