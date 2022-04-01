@@ -1,4 +1,4 @@
-module.exports = {
+const config = {
   plugins: ["react"],
   rules: {
     "react/prop-types": "off",
@@ -9,7 +9,6 @@ module.exports = {
     {
       files: ["**/*.jsx", "**/*.tsx"],
       parserOptions: {
-        sourceType: "module",
         ecmaFeatures: { jsx: true }
       }
     }
@@ -20,3 +19,14 @@ module.exports = {
     }
   }
 };
+
+if (process.env.npm_package_type === "module") {
+  config.overrides.push({
+    files: ["**/*.jsx"],
+    parserOptions: {
+      sourceType: "module"
+    }
+  });
+}
+
+module.exports = config;
