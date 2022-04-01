@@ -1,7 +1,6 @@
 const config = {
   parserOptions: { ecmaVersion: 2021 },
   env: { node: true },
-  plugins: [],
   rules: {
     "no-unused-vars": ["warn", { varsIgnorePattern: "^_+" }],
     "no-undef": "error",

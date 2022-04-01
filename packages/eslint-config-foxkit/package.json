@@ -1,9 +1,9 @@
 {
   "name": "eslint-config-foxkit",
-  "version": "1.1.0",
+  "version": "1.0.0",
   "description": "Shareable ESLint config",
   "main": "index.js",
-  "repository": "git@github.com:foxkit-js/eslint-config.git",
+  "repository": "Mitsunee/foxkit",
   "author": "Mitsunee <michelle@mitsunee.com>",
   "license": "MIT",
   "scripts": {
@@ -13,6 +13,7 @@
   },
   "eslintConfig": {
     "extends": [
+      "eslint:recommended",
       ".",
       "prettier"
     ]
@@ -29,7 +30,8 @@
   "files": [
     "rules",
     "index.js",
-    "react.js"
+    "react.js",
+    "ts.js"
   ],
   "clean-publish": {
     "withoutPublish": true,
@@ -51,11 +53,27 @@
     "prettier": "^2.6.1"
   },
   "peerDependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.17.0",
+    "@typescript-eslint/parser": "^5.17.0",
     "eslint": "^7.32.0 || >=8.12.0",
-    "eslint-plugin-react": "^7.29.4"
+    "eslint-plugin-jsx-a11y": "^6.5.1",
+    "eslint-plugin-react": "^7.29.4",
+    "eslint-plugin-react-hooks": "^4.4.0"
   },
   "peerDependenciesMeta": {
+    "@typescript-eslint/eslint-plugin": {
+      "optional": true
+    },
+    "@typescript-eslint/parser": {
+      "optional": true
+    },
+    "eslint-plugin-jsx-a11y": {
+      "optional": true
+    },
     "eslint-plugin-react": {
+      "optional": true
+    },
+    "eslint-plugin-react-hooks": {
       "optional": true
     }
   }
