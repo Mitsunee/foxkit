@@ -17,7 +17,11 @@
     "publish": "clean-publish"
   },
   "eslintConfig": {
-    "extends": "@foxkit"
+    "extends": [
+      "eslint:recommended",
+      "foxkit",
+      "prettier"
+    ]
   },
   "nano-staged": {
     "**/*.js": [
@@ -47,7 +51,7 @@
     "access": "public"
   },
   "devDependencies": {
-    "@foxkit/eslint-config": "*",
+    "eslint-config-foxkit": "*",
     "clean-publish": "^4.0.0",
     "eslint": "^8.12.0",
     "eslint-config-prettier": "^8.5.0",
