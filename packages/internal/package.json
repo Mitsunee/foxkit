@@ -51,9 +51,9 @@
     "access": "public"
   },
   "devDependencies": {
-    "eslint-config-foxkit": "*",
     "clean-publish": "^4.0.0",
     "eslint": "^8.12.0",
+    "eslint-config-foxkit": "*",
     "eslint-config-prettier": "^8.5.0",
     "prettier": "^2.6.1"
   },
