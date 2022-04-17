@@ -1,0 +1,59 @@
+{
+  "name": "@foxkit/rollup-config",
+  "version": "1.0.0",
+  "description": "Rollup config generating tools",
+  "main": "index.js",
+  "repository": "Mitsunee/foxkit",
+  "author": "Mitsunee",
+  "license": "MIT",
+  "scripts": {
+    "format": "prettier -w .",
+    "lint": "eslint .",
+    "publish": "clean-publish"
+  },
+  "eslintConfig": {
+    "extends": [
+      "eslint:recommended",
+      "foxkit",
+      "prettier"
+    ]
+  },
+  "nano-staged": {
+    "**/*.js": [
+      "eslint",
+      "prettier -w"
+    ],
+    "**/*.{json,md}": [
+      "prettier -w"
+    ]
+  },
+  "files": [
+    "ts.js",
+    "index.js"
+  ],
+  "clean-publish": {
+    "withoutPublish": true,
+    "tempDir": "../../publish/rollup-config",
+    "packageManager": "yarn",
+    "fields": [
+      "scripts",
+      "packageManager",
+      "nano-staged"
+    ]
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "devDependencies": {
+    "clean-publish": "^4.0.0",
+    "eslint": "^8.12.0",
+    "eslint-config-foxkit": "*",
+    "eslint-config-prettier": "^8.5.0",
+    "nano-staged": "^0.6.0",
+    "prettier": "^2.6.2",
+    "rollup": "^2.70.1"
+  },
+  "peerDependencies": {
+    "rollup": "^2.70.1"
+  }
+}
