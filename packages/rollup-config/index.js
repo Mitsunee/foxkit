@@ -2,7 +2,7 @@ const { readFileSync, rmSync, existsSync } = require("fs");
 const { join } = require("path");
 const { builtinModules } = require("module");
 
-module.exports = function initConfig({ distPath = "dist" }) {
+module.exports = function initConfig({ distPath = "dist" } = {}) {
   // clean dist dir
   const distPathFull = join(process.cwd(), distPath);
   if (existsSync(distPathFull)) {
