@@ -15,8 +15,8 @@ module.exports = function initConfig({ distPath = "dist" }) {
 
   const external = [
     ...builtinModules,
-    //...Object.keys(pkg.dependencies),
-    ...Object.keys(pkg.peerDependencies)
+    ...(pkg.dependencies ? Object.keys(pkg.dependencies) : []),
+    ...(pkg.peerDependencies ? Object.keys(pkg.peerDependencies) : [])
   ];
 
   return function makeConfig({ input, key }) {
