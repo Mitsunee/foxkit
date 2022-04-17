@@ -1,4 +1,4 @@
-const { readFileSync, rmdirSync, existsSync } = require("fs");
+const { readFileSync, rmSync, existsSync } = require("fs");
 const { join } = require("path");
 const { builtinModules } = require("module");
 const pluginTypescript = require("rollup-plugin-typescript2");
@@ -17,7 +17,7 @@ module.exports = function initConfig({ distPath = "dist" }) {
   // clean dist dir
   const distPathFull = join(process.cwd(), distPath);
   if (existsSync(distPathFull)) {
-    rmdirSync(distPathFull, { recursive: true, force: true });
+    rmSync(distPathFull, { recursive: true, force: true });
   }
 
   const pkg = JSON.parse(
