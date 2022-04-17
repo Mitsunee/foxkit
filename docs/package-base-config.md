@@ -83,4 +83,4 @@ $ yarn workspace @foxkit/pkg-name-here add -D \
 
 - Create `rollup.config.mjs` and add it in `package.json` under `"clean-publish".files`
 
-- Follow instructions in the README of [Rollup Config](packages/rollup-config/README.md).
+- Follow instructions in the README of [Rollup Config](../packages/rollup-config/README.md).
