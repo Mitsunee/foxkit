@@ -1,16 +1,13 @@
-import { readFileSync, rmdirSync, existsSync } from "fs";
-import { join } from "path";
-import { makeRollupConfig } from "@foxkit/internal";
+import initConfig from "@foxkit/rollup-config";
+const makeConfig = initConfig();
 
-// clean dist dir
-const distPath = join(process.cwd(), "dist");
-if (existsSync(distPath)) {
-  rmdirSync(join(process.cwd(), "dist"), { recursive: true, force: true });
-}
-
-const pkg = JSON.parse(
-  readFileSync(join(process.cwd(), "package.json"), "utf8")
-);
-const config = makeRollupConfig(pkg);
+const config = [
+  makeConfig({ key: "./fetch", input: "./src/fetch/index.js" }),
+  makeConfig({ key: "./fs", input: "./src/fs/index.js" }),
+  makeConfig({ key: "./fs-yaml", input: "./src/fs-yaml/index.js" }),
+  makeConfig({ key: "./log", input: "./src/log/index.js" }),
+  makeConfig({ key: "./path", input: "./src/path/index.js" }),
+  makeConfig({ key: "./readline", input: "./src/readline/index.js" })
+];
 
 export default config;
