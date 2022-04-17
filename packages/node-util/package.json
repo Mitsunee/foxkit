@@ -1,6 +1,6 @@
 {
   "name": "@foxkit/node-util",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "Nodejs Utility ES Modules",
   "main": "index.js",
   "repository": "Mitsunee/foxkit",
@@ -10,22 +10,22 @@
   "packageManager": "yarn",
   "exports": {
     "./fetch": {
-      "import": "./dist/fetch/index.js"
+      "import": "./dist/fetch.js"
     },
     "./fs": {
-      "import": "./dist/fs/index.js"
+      "import": "./dist/fs.js"
     },
     "./fs-yaml": {
-      "import": "./dist/fs-yaml/index.js"
+      "import": "./dist/fs-yaml.js"
     },
     "./log": {
-      "import": "./dist/log/index.js"
+      "import": "./dist/log.js"
     },
     "./path": {
-      "import": "./dist/path/index.js"
+      "import": "./dist/path.js"
     },
     "./readline": {
-      "import": "./dist/readline/index.js"
+      "import": "./dist/readline.js"
     }
   },
   "scripts": {
@@ -74,7 +74,7 @@
     "access": "public"
   },
   "devDependencies": {
-    "@foxkit/internal": "*",
+    "@foxkit/rollup-config": "*",
     "clean-publish": "^4.0.0",
     "eslint": "^8.12.0",
     "eslint-config-foxkit": "*",
