@@ -1,6 +1,6 @@
 {
   "name": "@foxkit/rollup-config",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Rollup config generating tools",
   "main": "index.js",
   "repository": "Mitsunee/foxkit",
