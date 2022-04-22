@@ -15,6 +15,7 @@ This configuration can be used to create a new package:
   "scripts": {
     "format": "prettier -w .",
     "lint": "eslint .",
+    "test": "echo Package has no tests",
     "publish": "clean-publish"
   },
   "eslintConfig": {
@@ -52,6 +53,27 @@ $ cd packages/pkg-name-here
 $ ln -s ../../.prettierrc.json .
 $ cd ../..
 $ yarn
+```
+
+## With Tests
+
+- Add the following devDependencies:
+
+```sh
+$ yarn workspace @foxkit/pkg-name-here add -D uvu
+```
+
+- Change the following scripts:
+
+```json
+  "test": "uvu",
+  "prebuild": "eslint . && uvu",
+```
+
+- Create the tests directory:
+
+```sh
+$ mkdir packages/pkg-name-here/tests
 ```
 
 ## With TypeScript

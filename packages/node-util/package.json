@@ -31,6 +31,7 @@
   "scripts": {
     "format": "prettier -w .",
     "lint": "eslint .",
+    "test": "echo Package has no tests",
     "prebuild": "eslint .",
     "build": "rollup -c",
     "dev": "rollup -c -w",
