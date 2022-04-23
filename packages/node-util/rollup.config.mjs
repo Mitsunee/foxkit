@@ -1,13 +1,13 @@
-import initConfig from "@foxkit/rollup-config";
+import initConfig from "@foxkit/rollup-config/ts.js";
 const makeConfig = initConfig();
 
 const config = [
-  makeConfig({ key: "./fetch", input: "./src/fetch/index.js" }),
-  makeConfig({ key: "./fs", input: "./src/fs/index.js" }),
-  makeConfig({ key: "./fs-yaml", input: "./src/fs-yaml/index.js" }),
-  makeConfig({ key: "./log", input: "./src/log/index.js" }),
-  makeConfig({ key: "./path", input: "./src/path/index.js" }),
-  makeConfig({ key: "./readline", input: "./src/readline/index.js" })
+  makeConfig({ key: "./fetch", input: "./src/fetch/index.ts" }),
+  makeConfig({ key: "./fs", input: "./src/fs/index.ts" }),
+  makeConfig({ key: "./fs-yaml", input: "./src/fs-yaml/readFileYaml.ts" }),
+  makeConfig({ key: "./log", input: "./src/log/index.ts" }),
+  makeConfig({ key: "./path", input: "./src/path/index.ts" }),
+  makeConfig({ key: "./readline", input: "./src/readline/readline.ts" })
 ];
 
 export default config;

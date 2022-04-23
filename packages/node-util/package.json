@@ -2,12 +2,11 @@
   "name": "@foxkit/node-util",
   "version": "0.2.2",
   "description": "Nodejs Utility ES Modules",
-  "main": "index.js",
   "repository": "Mitsunee/foxkit",
   "author": "Mitsunee",
   "license": "MIT",
   "type": "module",
-  "packageManager": "yarn",
+  "packageManager": "yarn@1.22.18+",
   "exports": {
     "./fetch": {
       "import": "./dist/fetch.js"
@@ -31,31 +30,34 @@
   "scripts": {
     "format": "prettier -w .",
     "lint": "eslint .",
-    "test": "echo Package has no tests",
-    "prebuild": "eslint .",
+    "test": "tsc --noEmit",
+    "prebuild": "eslint . && yarn test",
     "build": "rollup -c",
     "dev": "rollup -c -w",
-    "publish": "rollup -c && clean-publish"
+    "publish": "yarn build && clean-publish"
   },
   "eslintConfig": {
+    "parserOptions": {
+      "sourceType": "module"
+    },
     "extends": [
       "eslint:recommended",
       "foxkit",
+      "foxkit/ts",
       "prettier"
     ]
   },
   "nano-staged": {
-    "**/*.js": [
+    "**/*.{js,ts}": [
       "eslint",
       "prettier -w"
     ],
-    "**/*.{json,md,d.ts}": [
+    "**/*.{json,md}": [
       "prettier -w"
     ]
   },
   "files": [
-    "dist/",
-    "index.d.ts"
+    "dist/"
   ],
   "clean-publish": {
     "withoutPublish": true,
@@ -76,20 +78,30 @@
   },
   "devDependencies": {
     "@foxkit/rollup-config": "*",
+    "@types/node-fetch": "^2.6.1",
+    "@typescript-eslint/eslint-plugin": "^5.20.0",
+    "@typescript-eslint/parser": "^5.20.0",
     "clean-publish": "^4.0.0",
     "eslint": "^8.12.0",
     "eslint-config-foxkit": "*",
     "eslint-config-prettier": "^8.5.0",
     "nano-staged": "^0.6.0",
     "prettier": "^2.6.1",
-    "rollup": "^2.70.1"
+    "rollup": "^2.70.1",
+    "rollup-plugin-typescript2": "^0.31.2",
+    "typescript": "^4.6.3",
+    "yaml": "^2.0.1"
   },
   "peerDependencies": {
+    "@types/node-fetch": "^2.6.1",
     "node-fetch": "^2.6.7 || >=3.1.1",
     "picocolors": "^1.0.0",
     "yaml": "^1.10.2"
   },
   "peerDependenciesMeta": {
+    "@types/node-fetch": {
+      "optional": true
+    },
     "node-fetch": {
       "optional": true
     },
