@@ -9,6 +9,7 @@
   "scripts": {
     "format": "prettier -w .",
     "lint": "eslint .",
+    "test": "echo Package has no tests",
     "publish": "clean-publish"
   },
   "eslintConfig": {

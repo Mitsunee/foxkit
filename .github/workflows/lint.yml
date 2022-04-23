@@ -6,8 +6,24 @@ on:
   pull_request:
 
 jobs:
-  test:
+  lint:
     runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: 16.x
+          cache: yarn
+      - name: Install
+        run: yarn install --frozen-lockfile
+      - name: Lint
+        run: yarn workspaces run eslint --max-warnings 0 \.
+
+  format:
+    runs-on: ubuntu-latest
+    needs: lint
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -20,5 +36,22 @@ jobs:
         run: yarn install --frozen-lockfile
       - name: Run Format Check
         run: yarn workspaces run prettier -c \.
-      - name: Lint
-        run: yarn workspaces run eslint --max-warnings 0 \.
+
+  test:
+    runs-on: ubuntu-latest
+    needs: lint
+    strategy:
+      matrix:
+        node-version: [14.x, 16.x, 17.x]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: yarn
+      - name: Install
+        run: yarn install --frozen-lockfile --ignore-engines
+      - name: Run Tests
+        run: yarn workspaces run test

@@ -1,9 +1,8 @@
 # Package Base config
 
-This configuration can be used to create a new package:
+- This `package.json` template is used to create a new package. Replace every instance of `pkg-name-here` with the package name. Create the file in `./packages/pkg-name-here/package.json`
 
 ```json
-// ./packages/pkg-name-here/package.json
 {
   "name": "@foxkit/pkg-name-here",
   "version": "1.0.0",
@@ -15,6 +14,7 @@ This configuration can be used to create a new package:
   "scripts": {
     "format": "prettier -w .",
     "lint": "eslint .",
+    "test": "echo Package has no tests",
     "publish": "clean-publish"
   },
   "eslintConfig": {
@@ -45,7 +45,7 @@ This configuration can be used to create a new package:
 }
 ```
 
-Then run the following commands:
+- Then run the following commands to symlink the prettier configuration:
 
 ```sh
 $ cd packages/pkg-name-here
@@ -54,20 +54,59 @@ $ cd ../..
 $ yarn
 ```
 
-## With TypeScript
+## With Tests (uvu)
 
 - Add the following devDependencies:
+
+```sh
+$ yarn workspace @foxkit/pkg-name-here add -D uvu
+```
+
+- Change the following scripts:
+
+```json
+  "test": "uvu",
+  "prepublish": "eslint . && yarn test",
+```
+
+- Create the tests directory and add it to the `"clean-publish".files` list:
+
+```sh
+$ mkdir packages/pkg-name-here/tests
+```
+
+## With TypeScript
+
+- Add the following devDependencies and symlink the typescript configuration:
 
 ```sh
 $ yarn workspace @foxkit/pkg-name-here add -D \
   typescript \
   @typescript-eslint/parser \
   @typescript-eslint/eslint-plugin
+$ cd packages/pkg-name-here
+$ ln -s ../../tsconfig.json .
+$ cd ../..
 ```
 
-// TODO: add version ranges for TypeScript
+- Change the following scripts:
 
-- change `"eslintConfig"` key:
+```json
+  "test": "tsc --noEmit",
+  "prepublish": "eslint . && yarn test",
+```
+
+If you already added `uvu` earlier change test script like this instead and install the devDepency `tsm`:
+
+```json
+  "test": "tsc --noEmit && uvu -r tsm",
+```
+
+```sh
+yarn workspace @foxkit/pkg-name-here add -D tsm
+```
+
+- Change `"eslintConfig"` key:
 
 ```json
 {
@@ -75,12 +114,39 @@ $ yarn workspace @foxkit/pkg-name-here add -D \
 }
 ```
 
-// TODO: scripts with TypeScript typechecks
+- Change `"nano-staged"` to lint and format `*.ts` files:
+
+```json
+  "nano-staged": {
+    "**/*.{js,ts}": [
+      "eslint",
+      "prettier -w"
+    ],
+    "**/*.{json,md}": [
+      "prettier -w"
+    ]
+  }
+```
+
+- Add `"tsconfig.json` to the `"clean-publish".files` list
+
+- Follow the instructions below to add Rollup as a compile step
 
 ## With Rollup
 
+- Add the following devDependencies:
+
+```sh
+$ yarn workspace @foxkit/pkg-name-here add -D @foxkit/rollup-config@* rollup
+```
+
 - Replace the `"main"` key with `"exports"`.
+- Rename the `"prepublish"` script to `"prebuild"` and add the following scripts below it:
 
-- Create `rollup.config.mjs` and add it in `package.json` under `"clean-publish".files`
+```json
+  "build": "rollup -c",
+  "dev": "rollup -c -w",
+```
 
+- Create `rollup.config.mjs` and add it to the `"clean-publish".files` list
 - Follow instructions in the README of [Rollup Config](../packages/rollup-config/README.md).
