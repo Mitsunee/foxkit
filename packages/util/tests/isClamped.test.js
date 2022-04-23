@@ -1,6 +1,6 @@
 import { test } from "uvu";
 import { ok, not } from "uvu/assert";
-import { isClamped } from "../src/clamp/isClamped.js";
+import { isClamped } from "../src/clamp/isClamped.ts";
 
 test("returns false for min > value", () => {
   not(isClamped({ value: 2, min: 5 }));

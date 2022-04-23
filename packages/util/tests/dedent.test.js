@@ -1,6 +1,6 @@
 import { test } from "uvu";
 import { is } from "uvu/assert";
-import { dedent } from "../src/dedent/index.js";
+import { dedent } from "../src/dedent/index.ts";
 
 test("dedents with default options", () => {
   const dd = dedent();

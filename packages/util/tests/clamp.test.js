@@ -1,6 +1,6 @@
 import { test } from "uvu";
 import { is } from "uvu/assert";
-import { clamp } from "../src/clamp/clamp.js";
+import { clamp } from "../src/clamp/clamp.ts";
 
 test("returns min for smaller value", () => {
   is(clamp({ value: 2, min: 5 }), 5);

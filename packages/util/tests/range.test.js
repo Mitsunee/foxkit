@@ -1,6 +1,6 @@
 import { test } from "uvu";
-import { equal, not } from "uvu/assert";
-import { range } from "../src/range/index.js";
+import { equal } from "uvu/assert";
+import { range } from "../src/range/index.ts";
 
 test("returns 0 to 5 given only end of 5", () => {
   equal(range({ end: 5 }), [0, 1, 2, 3, 4, 5]);
@@ -22,12 +22,12 @@ test("respects length of 10 property for range from 0 to 100", () => {
   equal(range({ end: 100, length: 10 }), [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]);
 });
 
-test("returns false with no end and no length argument", () => {
-  not(range({ start: 0 }));
+test("returns empty array with no end and no length argument", () => {
+  equal(range({ start: 0 }), []);
 });
 
-test("returns false for step of 0 argument", () => {
-  not(range({ end: 3, step: 0 }));
+test("returns empty array for step of 0 argument", () => {
+  equal(range({ end: 3, step: 0 }), []);
 });
 
 test("returns empty array for a start greater than end, but positive step", () => {

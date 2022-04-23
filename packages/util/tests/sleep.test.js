@@ -1,6 +1,6 @@
 import { test } from "uvu";
 import { not } from "uvu/assert";
-import { sleep } from "../src/sleep/index.js";
+import { sleep } from "../src/sleep/index.ts";
 
 test("approx. waits for set amount of time", async () => {
   let hasFinished = false;
