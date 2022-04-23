@@ -96,10 +96,14 @@ $ cd ../..
   "prepublish": "eslint . && yarn test",
 ```
 
-If you already added `uvu` earlier change test script like this instead:
+If you already added `uvu` earlier change test script like this instead and install the devDepency `tsm`:
 
 ```json
-  "test": "tsc --noEmit && uvu",
+  "test": "tsc --noEmit && uvu -r tsm",
+```
+
+```sh
+yarn workspace @foxkit/pkg-name-here add -D tsm
 ```
 
 - Change `"eslintConfig"` key:
