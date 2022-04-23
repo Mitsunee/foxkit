@@ -4,13 +4,16 @@
   "description": "Collection of javascript utility modules",
   "keywords": [
     "foxkit",
-    "utility"
+    "utility",
+    "range",
+    "dedent",
+    "sleep",
+    "clamp"
   ],
   "repository": "Mitsunee/foxkit",
   "author": "Mitsunee",
   "license": "MIT",
   "type": "module",
-  "types": "index.d.ts",
   "exports": {
     "./clamp": {
       "import": "./dist/clamp.js",
@@ -33,7 +36,7 @@
   "scripts": {
     "format": "prettier -w .",
     "lint": "eslint .",
-    "test": "uvu",
+    "test": "tsc --noEmit && uvu -r tsm",
     "prebuild": "eslint . && yarn test",
     "build": "rollup -c",
     "dev": "rollup -c -w",
@@ -46,11 +49,12 @@
     "extends": [
       "eslint:recommended",
       "foxkit",
+      "foxkit/ts",
       "prettier"
     ]
   },
   "nano-staged": {
-    "**/*.js": [
+    "**/*.{js,ts}": [
       "eslint",
       "prettier -w"
     ],
@@ -82,6 +86,8 @@
   },
   "devDependencies": {
     "@foxkit/rollup-config": "*",
+    "@typescript-eslint/eslint-plugin": "^5.20.0",
+    "@typescript-eslint/parser": "^5.20.0",
     "clean-publish": "^4.0.0",
     "eslint": "^8.12.0",
     "eslint-config-foxkit": "*",
@@ -90,6 +96,8 @@
     "nano-staged": "^0.6.0",
     "prettier": "^2.6.2",
     "rollup": "^2.70.1",
+    "tsm": "^2.2.1",
+    "typescript": "^4.6.3",
     "uvu": "^0.5.3"
   }
 }
