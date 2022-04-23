@@ -78,7 +78,8 @@
     "files": [
       "src",
       "tests",
-      "rollup.config.mjs"
+      "rollup.config.mjs",
+      "tsconfig.json"
     ]
   },
   "publishConfig": {

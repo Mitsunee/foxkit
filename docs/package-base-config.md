@@ -128,6 +128,8 @@ yarn workspace @foxkit/pkg-name-here add -D tsm
   }
 ```
 
+- Add `"tsconfig.json` to the `"clean-publish".files` list
+
 - Follow the instructions below to add Rollup as a compile step
 
 ## With Rollup
