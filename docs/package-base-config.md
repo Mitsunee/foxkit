@@ -128,6 +128,12 @@ If you already added `uvu` earlier change test script like this instead:
 
 ## With Rollup
 
+- Add the following devDependencies:
+
+```sh
+$ yarn workspace @foxkit/pkg-name-here add -D @foxkit/rollup-config@* rollup
+```
+
 - Replace the `"main"` key with `"exports"`.
 - Rename the `"prepublish"` script to `"prebuild"` and add the following scripts below it:
 
