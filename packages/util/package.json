@@ -31,6 +31,10 @@
       "import": "./dist/sleep.js",
       "require": "./dist/sleep.cjs"
     },
+    "./typeOf": {
+      "import": "./dist/typeOf.js",
+      "require": "./dist/typeOf.cjs"
+    },
     "./package.json": "./package.json"
   },
   "scripts": {
