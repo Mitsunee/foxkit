@@ -1,6 +1,6 @@
 {
   "name": "eslint-config-foxkit",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "Shareable ESLint config",
   "main": "index.js",
   "repository": "Mitsunee/foxkit",
@@ -31,6 +31,7 @@
   "files": [
     "rules",
     "index.js",
+    "preact.js",
     "react.js",
     "ts.js"
   ],
