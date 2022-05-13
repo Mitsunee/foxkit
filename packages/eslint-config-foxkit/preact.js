@@ -1,4 +1,4 @@
-const reactConfig = import("./react");
+const reactConfig = require("./react");
 
 const config = {
   ...reactConfig,
