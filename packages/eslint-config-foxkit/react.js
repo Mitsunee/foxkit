@@ -1,6 +1,7 @@
 const config = {
   plugins: ["react", "react-hooks", "jsx-a11y"],
   rules: {
+    "react/jsx-uses-vars": 1,
     // disable prop types and enforce (j|t)sx file extension
     "react/prop-types": "off",
     "react/jsx-filename-extension": ["error", { extensions: [".jsx", ".tsx"] }],
@@ -18,6 +19,7 @@ const config = {
   overrides: [
     {
       files: ["**/*.jsx", "**/*.tsx"],
+      env: { browser: true },
       parserOptions: {
         ecmaFeatures: { jsx: true }
       }
