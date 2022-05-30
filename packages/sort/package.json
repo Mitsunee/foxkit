@@ -1,11 +1,12 @@
 {
   "name": "@foxkit/sort",
-  "version": "1.0.0",
+  "version": "0.0.0",
+  "type": "module",
   "description": "Fast Array sorting using Quick Sort",
   "exports": {
     ".": {
-      "import": "dist/sort.js",
-      "require": "dist/sort.cjs"
+      "import": "./dist/sort.js",
+      "require": "./dist/sort.cjs"
     }
   },
   "repository": "Mitsunee/foxkit",
@@ -14,13 +15,16 @@
   "scripts": {
     "format": "prettier -w .",
     "lint": "eslint .",
-    "test": "tsc --noEmit && uvu -r tsm",
+    "test": "tsc --noEmit && uvu -r tsm -i helpers",
     "prebuild": "eslint . && yarn test",
     "build": "rollup -c",
     "dev": "rollup -c -w",
     "publish": "clean-publish"
   },
   "eslintConfig": {
+    "parserOptions": {
+      "sourceType": "module"
+    },
     "extends": [
       "eslint:recommended",
       "foxkit",
