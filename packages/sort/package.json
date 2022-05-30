@@ -1,0 +1,79 @@
+{
+  "name": "@foxkit/sort",
+  "version": "1.0.0",
+  "description": "Fast Array sorting using Quick Sort",
+  "exports": {
+    ".": {
+      "import": "dist/sort.js",
+      "require": "dist/sort.cjs"
+    }
+  },
+  "repository": "Mitsunee/foxkit",
+  "author": "Mitsunee",
+  "license": "MIT",
+  "scripts": {
+    "format": "prettier -w .",
+    "lint": "eslint .",
+    "test": "tsc --noEmit && uvu -r tsm",
+    "prebuild": "eslint . && yarn test",
+    "build": "rollup -c",
+    "dev": "rollup -c -w",
+    "publish": "clean-publish"
+  },
+  "eslintConfig": {
+    "extends": [
+      "eslint:recommended",
+      "foxkit",
+      "foxkit/ts",
+      "prettier"
+    ]
+  },
+  "nano-staged": {
+    "**/*.{js,ts}": [
+      "eslint",
+      "prettier -w"
+    ],
+    "**/*.{json,md}": [
+      "prettier -w"
+    ]
+  },
+  "files": [
+    "dist",
+    "index.js"
+  ],
+  "clean-publish": {
+    "withoutPublish": true,
+    "tempDir": "../../publish/sort",
+    "packageManager": "yarn",
+    "fields": [
+      "scripts",
+      "packageManager",
+      "nano-staged"
+    ],
+    "files": [
+      "tests",
+      "tsconfig.json",
+      "rollup.config.mjs"
+    ]
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "devDependencies": {
+    "@foxkit/rollup-config": "*",
+    "@types/node": "^17.0.36",
+    "@typescript-eslint/eslint-plugin": "^5.26.0",
+    "@typescript-eslint/parser": "^5.26.0",
+    "clean-publish": "^4.0.0",
+    "eslint": "^8.16.0",
+    "eslint-config-foxkit": "*",
+    "eslint-config-prettier": "^8.5.0",
+    "nano-staged": "^0.8.0",
+    "prettier": "^2.6.2",
+    "rollup": "^2.75.3",
+    "rollup-plugin-typescript2": "^0.31.2",
+    "tsm": "^2.2.1",
+    "typescript": "^4.7.2",
+    "uvu": "^0.5.3"
+  }
+}
