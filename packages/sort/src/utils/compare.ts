@@ -4,8 +4,6 @@ interface CompareFn<T> {
 
 export type CompareArgument<T> = string | CompareFn<T>;
 
-// TODO: add tests
-
 // checks if a <= b
 export function compare<T>(a: any, b: any, arg?: CompareArgument<T>): boolean {
   switch (typeof arg) {
