@@ -29,9 +29,3 @@ export function stableQSort<T>(
     ...stableQSort(bigger, sortBy)
   ];
 }
-
-//
-//     TODO     TODO     TODO     TODO     TODO     TODO     TODO     TODO     TODO     TODO     TODO     TODO     TODO
-//   - copy sorting tests
-//   - Test stability (need helpers?)
-//
