@@ -33,7 +33,7 @@ test("sorts objects by specified key", () => {
   const subject = toObjectSubject(genSubject({ size: 10 }));
   const sorted = qSortDP(subject, "val");
   ok(
-    isSorted(sorted),
+    isSorted(sorted, "val"),
     `Sorted subject ${JSON.stringify(subject)} as ${JSON.stringify(sorted)}`
   );
 });
@@ -68,12 +68,17 @@ test("random tests", () => {
     if (i == 24 || i == 48 || i % 5 == 0) {
       subject = toObjectSubject(subject);
       sorted = qSortDP(subject, "val");
-    } else sorted = qSortDP(subject);
-
-    ok(
-      isSorted(sorted),
-      `Sorted subject ${JSON.stringify(subject)} as ${JSON.stringify(sorted)}`
-    );
+      ok(
+        isSorted(sorted, "val"),
+        `Sorted subject ${JSON.stringify(subject)} as ${JSON.stringify(sorted)}`
+      );
+    } else {
+      sorted = qSortDP(subject);
+      ok(
+        isSorted(sorted),
+        `Sorted subject ${JSON.stringify(subject)} as ${JSON.stringify(sorted)}`
+      );
+    }
   }
 });
 
