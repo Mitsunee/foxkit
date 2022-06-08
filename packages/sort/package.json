@@ -7,6 +7,10 @@
     ".": {
       "import": "./dist/sort.js",
       "require": "./dist/sort.cjs"
+    },
+    "./stable": {
+      "import": "./dist/stable.js",
+      "require": "./dist/stable.cjs"
     }
   },
   "repository": "Mitsunee/foxkit",
@@ -19,7 +23,7 @@
     "prebuild": "eslint . && yarn test",
     "build": "rollup -c",
     "dev": "rollup -c -w",
-    "publish": "clean-publish"
+    "publish": "yarn build && clean-publish"
   },
   "eslintConfig": {
     "parserOptions": {
@@ -55,6 +59,7 @@
       "nano-staged"
     ],
     "files": [
+      "src",
       "tests",
       "tsconfig.json",
       "rollup.config.mjs"

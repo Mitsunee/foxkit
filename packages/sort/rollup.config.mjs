@@ -3,7 +3,7 @@ const makeConfig = initConfig();
 
 const config = [
   makeConfig({ input: "src/index.ts", key: "." }),
-  makeConfig({ input: "src/foo.js", key: "./foo", ts: false }) // disable ts for specific export
+  makeConfig({ input: "src/stable.ts", key: "./stable" })
 ];
 
 export default config;
