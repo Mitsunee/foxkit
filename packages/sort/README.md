@@ -61,3 +61,15 @@ qSort(myArr, "v"); /* results in:
   { v: 7, idx: 2 }
 ] */
 ```
+
+## Benchmarks
+
+The following benchmarks were ran on Node.js 16.15.1 on an AMD Ryzen 5 5600X:
+
+| Algorithm                      | Size 10             | Size 100          | Size 1000        |
+| :----------------------------- | ------------------- | ----------------- | ---------------- |
+| Quick Sort                     | 2,787,694 ops/s     | 127,987 ops/s     | 7,864 ops/s      |
+| Quick Sort (stable)            | 2,621,185 ops/s     | 124,066 ops/s     | 7,863 ops/s      |
+| Selection Sort                 | **7,728,042 ops/s** | 170,530 ops/s     | 625 ops/s        |
+| Dual-Pivot Quick Sort          | 5,146,566 ops/s     | **236,773 ops/s** | **11,998 ops/s** |
+| Dual-Pivot Quick Sort (stable) | 5,029,356 ops/s     | 219,577 ops/s     | 11,496 ops/s     |
