@@ -146,6 +146,7 @@ $ yarn workspace @foxkit/pkg-name-here add -D @foxkit/rollup-config@* rollup
 ```json
   "build": "rollup -c",
   "dev": "rollup -c -w",
+  "publish": "yarn build && clean-publish"
 ```
 
 - Create `rollup.config.mjs` and add it to the `"clean-publish".files` list

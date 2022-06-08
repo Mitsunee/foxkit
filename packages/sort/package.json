@@ -1,50 +1,30 @@
 {
-  "name": "@foxkit/util",
-  "version": "0.5.0",
-  "description": "Collection of javascript utility modules",
-  "keywords": [
-    "foxkit",
-    "utility",
-    "range",
-    "dedent",
-    "sleep",
-    "clamp"
-  ],
+  "name": "@foxkit/sort",
+  "version": "0.0.0",
+  "type": "module",
+  "description": "Fast Array sorting using Quick Sort",
+  "exports": {
+    ".": {
+      "import": "./dist/sort.js",
+      "require": "./dist/sort.cjs"
+    },
+    "./stable": {
+      "import": "./dist/stable.js",
+      "require": "./dist/stable.cjs"
+    }
+  },
   "repository": "Mitsunee/foxkit",
   "author": "Mitsunee",
   "license": "MIT",
-  "type": "module",
-  "exports": {
-    "./clamp": {
-      "import": "./dist/clamp.js",
-      "require": "./dist/clamp.cjs"
-    },
-    "./dedent": {
-      "import": "./dist/dedent.js",
-      "require": "./dist/dedent.cjs"
-    },
-    "./range": {
-      "import": "./dist/range.js",
-      "require": "./dist/range.cjs"
-    },
-    "./sleep": {
-      "import": "./dist/sleep.js",
-      "require": "./dist/sleep.cjs"
-    },
-    "./typeOf": {
-      "import": "./dist/typeOf.js",
-      "require": "./dist/typeOf.cjs"
-    },
-    "./package.json": "./package.json"
-  },
   "scripts": {
     "format": "prettier -w .",
     "lint": "eslint .",
-    "test": "tsc --noEmit && uvu -r tsm",
+    "test": "tsc --noEmit && uvu -r tsm -i helpers",
     "prebuild": "eslint . && yarn test",
     "build": "rollup -c",
     "dev": "rollup -c -w",
-    "publish": "yarn build && clean-publish"
+    "publish": "yarn build && clean-publish",
+    "bench": "tsm bench.js"
   },
   "eslintConfig": {
     "parserOptions": {
@@ -68,11 +48,11 @@
   },
   "files": [
     "dist",
-    "index.d.ts"
+    "index.js"
   ],
   "clean-publish": {
     "withoutPublish": true,
-    "tempDir": "../../publish/util",
+    "tempDir": "../../publish/sort",
     "packageManager": "yarn",
     "fields": [
       "scripts",
@@ -82,8 +62,9 @@
     "files": [
       "src",
       "tests",
+      "tsconfig.json",
       "rollup.config.mjs",
-      "tsconfig.json"
+      "bench.js"
     ]
   },
   "publishConfig": {
@@ -91,13 +72,14 @@
   },
   "devDependencies": {
     "@foxkit/rollup-config": "*",
+    "@types/node": "^17.0.36",
     "@typescript-eslint/eslint-plugin": "^5.26.0",
     "@typescript-eslint/parser": "^5.26.0",
+    "benchmark": "^2.1.4",
     "clean-publish": "^4.0.0",
-    "eslint": "^8.12.0",
+    "eslint": "^8.16.0",
     "eslint-config-foxkit": "*",
     "eslint-config-prettier": "^8.5.0",
-    "mocha": "^9.1.2",
     "nano-staged": "^0.8.0",
     "prettier": "^2.6.2",
     "rollup": "^2.75.3",
