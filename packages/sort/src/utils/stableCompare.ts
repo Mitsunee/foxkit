@@ -4,25 +4,27 @@ interface StableCompareFn<T> {
 
 export type StableCompareArgument<T> = string | StableCompareFn<T>;
 
-export function stableCompare<T>(
-  a: any,
-  b: any,
+export function createStableComparison<T>(
   arg?: StableCompareArgument<T>
-): number {
+): (a: any, b: any) => number {
   switch (typeof arg) {
     case "string":
     case "number": {
-      if (a[arg] < b[arg]) return -1;
-      if (a[arg] > b[arg]) return 1;
-      return 0;
+      return (a, b) => {
+        if (a[arg] < b[arg]) return -1;
+        if (a[arg] > b[arg]) return 1;
+        return 0;
+      };
     }
     case "function": {
-      return arg(a, b);
+      return arg;
     }
     default: {
-      if (a < b) return -1;
-      if (a > b) return 1;
-      return 0;
+      return (a, b) => {
+        if (a < b) return -1;
+        if (a > b) return 1;
+        return 0;
+      };
     }
   }
 }
