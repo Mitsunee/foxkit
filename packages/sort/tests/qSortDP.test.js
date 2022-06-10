@@ -8,7 +8,7 @@ test("array shorter than 3", () => {
   equal(qSortDP([]), [], "empty array");
   equal(qSortDP([1]), [1], "length 1");
   equal(qSortDP([1, 2]), [1, 2], "length 2 pre-sorted");
-  equal(qSortDP([2, 1]), [1, 2], "legth 2 requires sorting");
+  equal(qSortDP([2, 1]), [1, 2], "length 2 requires sorting");
 });
 
 test("basic test", () => {

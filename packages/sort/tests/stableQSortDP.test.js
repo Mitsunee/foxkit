@@ -9,7 +9,7 @@ test("array shorter than 3", () => {
   equal(stableQSortDP([]), [], "empty array");
   equal(stableQSortDP([1]), [1], "length 1");
   equal(stableQSortDP([1, 2]), [1, 2], "length 2 pre-sorted");
-  equal(stableQSortDP([2, 1]), [1, 2], "legth 2 requires sorting");
+  equal(stableQSortDP([2, 1]), [1, 2], "length 2 requires sorting");
 });
 
 test("basic test", () => {

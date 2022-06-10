@@ -9,7 +9,7 @@ test("array shorter than 3", () => {
   equal(stableQSort([]), [], "empty array");
   equal(stableQSort([1]), [1], "length 1");
   equal(stableQSort([1, 2]), [1, 2], "length 2 pre-sorted");
-  equal(stableQSort([2, 1]), [1, 2], "legth 2 requires sorting");
+  equal(stableQSort([2, 1]), [1, 2], "length 2 requires sorting");
 });
 
 test("basic test", () => {

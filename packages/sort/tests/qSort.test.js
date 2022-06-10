@@ -8,7 +8,7 @@ test("array shorter than 3", () => {
   equal(qSort([]), [], "empty array");
   equal(qSort([1]), [1], "length 1");
   equal(qSort([1, 2]), [1, 2], "length 2 pre-sorted");
-  equal(qSort([2, 1]), [1, 2], "legth 2 requires sorting");
+  equal(qSort([2, 1]), [1, 2], "length 2 requires sorting");
 });
 
 test("basic test", () => {

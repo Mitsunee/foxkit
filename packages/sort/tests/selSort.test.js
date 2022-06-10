@@ -8,7 +8,7 @@ test("array shorter than 3", () => {
   equal(selSort([]), [], "empty array");
   equal(selSort([1]), [1], "length 1");
   equal(selSort([1, 2]), [1, 2], "length 2 pre-sorted");
-  equal(selSort([2, 1]), [1, 2], "legth 2 requires sorting");
+  equal(selSort([2, 1]), [1, 2], "length 2 requires sorting");
 });
 
 test("basic test", () => {
