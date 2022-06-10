@@ -51,7 +51,7 @@ export function genSubject({
     (skips && !res.some((el, i) => i == 0 || el - 1 > res[i - 1])) ||
     (duplicates && !res.some((el, i) => el == res[i + 1]))
   ) {
-    console.log("DEBUG: retrying random subject");
+    if (log) console.log("retrying random subject");
     return genSubject({ size, skips, duplicates }); // try again recursively
   }
 

@@ -4,19 +4,21 @@ interface CompareFn<T> {
 
 export type CompareArgument<T> = string | CompareFn<T>;
 
-// checks if a <= b
-export function compare<T>(a: any, b: any, arg?: CompareArgument<T>): boolean {
+export function createComparison<T>(
+  arg?: CompareArgument<T>
+): (a: any, b: any) => boolean {
   switch (typeof arg) {
     case "string":
-    case "number": {
-      return a[arg] <= b[arg];
-    }
+    case "number":
+      return (a, b) => a[arg] <= b[arg];
     case "function": {
-      const res = arg(a, b);
-      if (typeof res == "number") return res < 1;
-      return res;
+      return (a, b) => {
+        const res = arg(a, b);
+        if (typeof res == "number") return res < 1;
+        return res;
+      };
     }
     default:
-      return a <= b;
+      return (a, b) => a <= b;
   }
 }

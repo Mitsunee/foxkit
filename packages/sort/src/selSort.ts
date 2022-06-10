@@ -1,32 +1,33 @@
-import { compare, CompareArgument } from "./utils/compare";
+import { CompareArgument, createComparison } from "./utils/compare";
 
 export function selSort<T>(
-  input: Array<T>,
+  arr: Array<T>,
   sortBy?: CompareArgument<T>
 ): Array<T> {
-  const arr: T[] = [...input];
-  const res: T[] = new Array();
+  const compare = createComparison(sortBy);
+  const res: T[] = [...arr];
+  let pointer = 0;
 
-  while (arr.length >= 2) {
-    // seek index of smallest element
-    let min = 0;
-    for (let i = 1; i < arr.length; i++) {
-      if (compare(arr[i], arr[min], sortBy)) min = i;
+  while (pointer < res.length - 1) {
+    // seek index of smallest element after pointer
+    let min = pointer;
+    for (let i = pointer + 1; i < res.length; i++) {
+      if (compare(res[i], res[min])) min = i;
     }
 
-    // if possible swap first and smallest element (causes unstable sorting of duplicates)
-    if (min > 0) {
-      const firstEl = arr[0];
-      const minEl = arr[min];
-      arr[0] = minEl;
-      arr[min] = firstEl;
+    // if possible swap at pointer and smallest element (causes unstable sorting of duplicates)
+    if (min > pointer) {
+      const firstEl = res[pointer];
+      const minEl = res[min];
+      res[pointer] = minEl;
+      res[min] = firstEl;
     }
 
-    // shift first element in working list into res
-    res.push(arr.shift()!);
+    // move pointer
+    pointer++;
   }
 
-  if (arr.length > 0) res.push(arr[0]); // put last element into result
+  //if (arr.length > 0) res.push(arr[0]); // put last element into result
 
   return res;
 }
