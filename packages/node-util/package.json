@@ -9,22 +9,28 @@
   "packageManager": "yarn@1.22.18+",
   "exports": {
     "./fetch": {
-      "import": "./dist/fetch.js"
+      "import": "./dist/fetch.js",
+      "types": "./dist/fetch/index.d.ts"
     },
     "./fs": {
-      "import": "./dist/fs.js"
+      "import": "./dist/fs.js",
+      "types": "./dist/fs/index.d.ts"
     },
     "./fs-yaml": {
-      "import": "./dist/fs-yaml.js"
+      "import": "./dist/fs-yaml.js",
+      "types": "./dist/fs-yaml/readFileYaml.d.ts"
     },
     "./log": {
-      "import": "./dist/log.js"
+      "import": "./dist/log.js",
+      "types": "./dist/log/index.d.ts"
     },
     "./path": {
-      "import": "./dist/path.js"
+      "import": "./dist/path.js",
+      "types": "./dist/path/index.d.ts"
     },
     "./readline": {
-      "import": "./dist/readline.js"
+      "import": "./dist/readline.js",
+      "types": "./dist/readline/readline.d.ts"
     }
   },
   "scripts": {
