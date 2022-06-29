@@ -17,23 +17,28 @@
   "exports": {
     "./clamp": {
       "import": "./dist/clamp.js",
-      "require": "./dist/clamp.cjs"
+      "require": "./dist/clamp.cjs",
+      "types": "./dist/clamp/index.d.ts"
     },
     "./dedent": {
       "import": "./dist/dedent.js",
-      "require": "./dist/dedent.cjs"
+      "require": "./dist/dedent.cjs",
+      "types": "./dist/dedent/index.d.ts"
     },
     "./range": {
       "import": "./dist/range.js",
-      "require": "./dist/range.cjs"
+      "require": "./dist/range.cjs",
+      "types": "./dist/range/index.d.ts"
     },
     "./sleep": {
       "import": "./dist/sleep.js",
-      "require": "./dist/sleep.cjs"
+      "require": "./dist/sleep.cjs",
+      "types": "./dist/sleep/index.d.ts"
     },
     "./typeOf": {
       "import": "./dist/typeOf.js",
-      "require": "./dist/typeOf.cjs"
+      "require": "./dist/typeOf.cjs",
+      "types": "./dist/typeOf/index.d.ts"
     },
     "./package.json": "./package.json"
   },
