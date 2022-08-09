@@ -30,6 +30,7 @@
   },
   "files": [
     "ts.js",
+    "ts-babel.js",
     "index.js"
   ],
   "clean-publish": {

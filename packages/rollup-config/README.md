@@ -40,13 +40,17 @@ The output paths and dependencies (`external` field in config) will be read from
 
 ## With TypeScript
 
-Install TypeScript and `rollup-plugin-typeScript2` as well:
+Two options exist to use TypeScript:
+
+### With Type Declarations
+
+- Install `typescript rollup-plugin-typeScript2` as well:
 
 ```sh
 yarn add -D typescript rollup-plugin-typescript2
 ```
 
-Then import `"@foxkit/rollup-config/ts"` instead.
+- Then import `"@foxkit/rollup-config/ts"` instead.
 
 ```js
 import initConfig from "@foxkit/rollup-config/ts.js";
@@ -61,3 +65,33 @@ export default config;
 ```
 
 This will make sure types are checked and build time. Type declaration files will be included alongside the generated files.
+
+### Transpiled (Babel)
+
+- Install TypeScript, Babel and `@rollup/plugin-babel` as well:
+
+```sh
+yarn add -D typescript @rollup/plugin-babel @babel/core @babel/preset-typescript
+```
+
+- Add the following `babel.config.json` config to your project:
+
+```json
+{
+  "presets": ["@babel/typescript"]
+}
+```
+
+- Then import `"@foxkit/rollup-config/ts-babel"` instead.
+
+```js
+import initConfig from "@foxkit/rollup-config/ts.js";
+const makeConfig = initConfig();
+
+const config = [
+  makeConfig({ input: "src/index.ts", key: "." }),
+  makeConfig({ input: "src/foo.js", key: "./foo" })
+];
+
+export default config;
+```
