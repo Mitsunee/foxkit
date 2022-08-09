@@ -81,24 +81,24 @@ This will make sure types are checked and build time. Type declaration files wil
 
 ### Transpiled (Babel)
 
-- Install TypeScript, Babel and `@rollup/plugin-babel` as well:
+- Install TypeScript, Babel, `@rollup/plugin-node-resolve` and `@rollup/plugin-babel` as well:
 
 ```sh
-yarn add -D typescript @rollup/plugin-babel @babel/core @babel/preset-typescript
+yarn add -D typescript @rollup/plugin-node-resolve @rollup/plugin-babel @babel/core @babel/preset-typescript
 ```
 
 - Add the following `babel.config.json` config to your project:
 
 ```json
 {
-  "presets": ["@babel/typescript"]
+  "presets": ["@babel/preset-typescript"]
 }
 ```
 
 - Then import `"@foxkit/rollup-config/ts-babel"` instead.
 
 ```js
-import initConfig from "@foxkit/rollup-config/ts.js";
+import initConfig from "@foxkit/rollup-config/ts-babel.js";
 const makeConfig = initConfig();
 
 const config = [

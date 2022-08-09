@@ -1,11 +1,15 @@
 const { readFileSync, rmSync, existsSync } = require("fs");
 const { join } = require("path");
 const { builtinModules } = require("module");
-const babel = require("@rollup/plugin-babel");
+const { nodeResolve } = require("@rollup/plugin-node-resolve");
+const { babel } = require("@rollup/plugin-babel");
+
+const extensions = [".js", ".mjs", "cjs", ".ts"];
 
 const plugins = [
+  nodeResolve({ extensions }),
   babel({
-    extensions: [".js", ".mjs", "cjs", ".ts"],
+    extensions,
     babelHelpers: "bundled",
     include: ["src/**/*"]
   })
