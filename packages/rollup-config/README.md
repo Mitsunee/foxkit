@@ -38,6 +38,19 @@ The output paths and dependencies (`external` field in config) will be read from
 }
 ```
 
+## Skip Autoclean
+
+All configs delete the `dist` directory when initialized. To prevent this behaviour set the environment variable `ROLLUP_SKIP_CLEAN` to `"true"` before initializing a config:
+
+```js
+process.env.ROLLUP_SKIP_CLEAN = "true";
+const makeConfig = initConfig();
+```
+
+```sh
+ROLLUP_SKIP_CLEAN="true" yarn build
+```
+
 ## With TypeScript
 
 Two options exist to use TypeScript:
