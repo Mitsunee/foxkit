@@ -1,7 +1,13 @@
 {
   "name": "@foxkit/node-util",
   "version": "0.3.1",
-  "description": "Nodejs Utility ES Modules",
+  "description": "Node.js Utility Modules",
+  "keywords": [
+    "fs",
+    "path",
+    "utils",
+    "foxkit"
+  ],
   "repository": "Mitsunee/foxkit",
   "author": "Mitsunee",
   "license": "MIT",
@@ -9,23 +15,28 @@
   "exports": {
     "./fs": {
       "types": "./fs.d.ts",
-      "import": "./dist/fs.js"
+      "import": "./dist/fs.js",
+      "require": "./dist/fs.cjs"
     },
     "./fs-yaml": {
       "types": "./fs-yaml.d.ts",
-      "import": "./dist/fs-yaml.js"
+      "import": "./dist/fs-yaml.js",
+      "require": "./dist/fs-yaml.cjs"
     },
     "./log": {
       "types": "./log.d.ts",
-      "import": "./dist/log.js"
+      "import": "./dist/log.js",
+      "require": "./dist/log.cjs"
     },
     "./path": {
       "types": "./path.d.ts",
-      "import": "./dist/path.js"
+      "import": "./dist/path.js",
+      "require": "./dist/path.cjs"
     },
     "./readline": {
       "types": "./readline.d.ts",
-      "import": "./dist/readline.js"
+      "import": "./dist/readline.js",
+      "require": "./dist/readline.cjs"
     }
   },
   "scripts": {
