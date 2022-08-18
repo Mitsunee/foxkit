@@ -8,24 +8,24 @@
   "type": "module",
   "exports": {
     "./fs": {
-      "types": "./dist/fs/index.d.ts",
-      "import": "./dist/fs/index.js"
+      "types": "./fs.d.ts",
+      "import": "./dist/fs.js"
     },
     "./fs-yaml": {
-      "types": "./dist/fs-yaml/index.d.ts",
-      "import": "./dist/fs-yaml/index.js"
+      "types": "./fs-yaml.d.ts",
+      "import": "./dist/fs-yaml.js"
     },
     "./log": {
-      "types": "./dist/log/index.d.ts",
-      "import": "./dist/log/index.js"
+      "types": "./log.d.ts",
+      "import": "./dist/log.js"
     },
     "./path": {
-      "types": "./dist/path/index.d.ts",
-      "import": "./dist/path/index.js"
+      "types": "./path.d.ts",
+      "import": "./dist/path.js"
     },
     "./readline": {
-      "types": "./dist/readline/index.d.ts",
-      "import": "./dist/readline/index.js"
+      "types": "./readline.d.ts",
+      "import": "./dist/readline.js"
     }
   },
   "scripts": {
@@ -59,7 +59,12 @@
     ]
   },
   "files": [
-    "dist/"
+    "dist/",
+    "fs.d.ts",
+    "fs-yaml.d.ts",
+    "log.d.ts",
+    "path.d.ts",
+    "readline.d.ts"
   ],
   "clean-publish": {
     "withoutPublish": true,
@@ -71,6 +76,7 @@
       "nano-staged"
     ],
     "files": [
+      "babel.config.json",
       "src",
       "rollup.config.mjs",
       "tsconfig.json"
