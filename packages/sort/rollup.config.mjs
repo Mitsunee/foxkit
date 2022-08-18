@@ -1,4 +1,4 @@
-import initConfig from "@foxkit/rollup-config/ts.js";
+import initConfig from "@foxkit/rollup-config/ts-babel.js";
 const makeConfig = initConfig();
 
 const config = [
