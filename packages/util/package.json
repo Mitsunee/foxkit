@@ -8,7 +8,8 @@
     "range",
     "dedent",
     "sleep",
-    "clamp"
+    "clamp",
+    "object"
   ],
   "repository": "Mitsunee/foxkit",
   "author": "Mitsunee",
@@ -24,6 +25,11 @@
       "types": "./dedent.d.ts",
       "import": "./dist/dedent.js",
       "require": "./dist/dedent.cjs"
+    },
+    "./object": {
+      "types": "./object.d.ts",
+      "import": "./dist/object.js",
+      "require": "./dist/object.cjs"
     },
     "./range": {
       "types": "./range.d.ts",
