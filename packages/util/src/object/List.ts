@@ -14,11 +14,11 @@ export class List<T> {
   #length: number = 0;
 
   get head() {
-    return this.#head;
+    return this.#head?.value;
   }
 
   get tail() {
-    return this.#tail;
+    return this.#tail?.value;
   }
 
   get length() {
