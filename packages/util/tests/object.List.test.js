@@ -2,6 +2,16 @@ import { test } from "uvu";
 import * as assert from "uvu/assert";
 import { List } from "../src/object/List.ts";
 
+const lorem = [
+  "lorem", // 0
+  "ipsum", // 1
+  "dolor", // 2
+  "sit", // 3
+  "amet", // 4
+  "consectetur", // 5
+  "adipisicing" // 6
+]; // length: 7
+
 test("Can push elements into List", () => {
   const list = new List();
 
@@ -76,15 +86,6 @@ test("Can unshift elements into List", () => {
 
 test("Can get ListNode by index", () => {
   const list = new List();
-  const lorem = [
-    "lorem", // 0
-    "ipsum", // 1
-    "dolor", // 2
-    "sit", // 3
-    "amet", // 4
-    "consectetur", // 5
-    "adipisicing" // 6
-  ]; // length: 7
 
   // empty list
   assert.is(list.getNode(0), undefined, "return undefined for empty list");
@@ -121,15 +122,6 @@ test("Can get ListNode by index", () => {
 
 test("Can get value by index", () => {
   const list = new List();
-  const lorem = [
-    "lorem", // 0
-    "ipsum", // 1
-    "dolor", // 2
-    "sit", // 3
-    "amet", // 4
-    "consectetur", // 5
-    "adipisicing" // 6
-  ]; // length: 7
 
   // empty list
   assert.is(list.get(0), undefined, "return undefined for empty list");
@@ -178,6 +170,99 @@ test("Can set value by index", () => {
   );
   assert.is(list.tail, "barbaz", "correctly pushed element");
   assert.is(list.length, 4, "correctly pushed element");
+});
+
+test("Can insert value into list", () => {
+  const list = new List();
+
+  // bad index
+  assert.not(list.insert(-1, "bad"), "reject negative index with false");
+
+  list.push("lorem").push("ipsum").push("dolor");
+
+  // can unshift
+  assert.ok(list.insert(0, "UNSHIFTED"), "return true");
+  assert.is(list.head, "UNSHIFTED", "correctly unshifted element into list");
+  assert.is(list.length, 4, "updated length after unshift");
+
+  // can push
+  assert.ok(list.insert(4, "PUSHED"), "return true");
+  assert.is(list.tail, "PUSHED", "correctly pushed element into list");
+  assert.is(list.length, 5, "updated length after push");
+
+  // can insert
+  assert.ok(list.insert(2, "INSERTED"), "return true");
+  assert.is(list.get(1), "lorem", "correctly inserted element into list");
+  assert.is(list.get(2), "INSERTED", "correctly inserted element into list");
+  assert.is(list.get(3), "ipsum", "correctly inserted element into list");
+  assert.is(list.length, 6, "updated length after insert");
+
+  // bad indexes
+  assert.not(list.insert(7), "reject index larger than length with false");
+});
+
+test("can remove elements from list", () => {
+  const list = new List();
+
+  // bad input
+  assert.not(list.remove(-1), "reject negative index with false");
+  assert.not(list.remove(7), "reject index larger than length with false");
+  assert.not(list.remove(0, 0), "reject amount of 0 with false");
+  assert.not(list.remove(0, -3), "reject negative amount with false");
+
+  // edge case
+  assert.ok(list.remove(0, 1), "don't reject removal of index 0 on empty list");
+
+  // remove item after head
+  for (const item of lorem) list.push(item);
+  assert.ok(list.remove(1), "remove one item in the list");
+  assert.is(list.head, "lorem", "head unchanged");
+  assert.is(list.get(1), lorem[2], "removed item at index 1");
+  assert.is(
+    list.getNode(1).prev,
+    list.getNode(0),
+    "new item at index 1 points back to head"
+  );
+  assert.is(
+    list.getNode(0).next,
+    list.getNode(1),
+    "head updated to point to new item at index 1"
+  );
+  assert.is(list.length, lorem.length - 1, "updated length");
+
+  // remove from start of list
+  while (list.length > 0) list.pop(); // empty list first
+  for (const item of lorem) list.push(item);
+  assert.ok(list.remove(0, 2), "remove two items from start of the list");
+  assert.is(list.head, lorem[2], "updated head");
+  assert.is(
+    list.getNode(0).prev,
+    null,
+    "head does not point back at removed node"
+  );
+  assert.is(list.length, lorem.length - 2, "updated length");
+
+  // remove from end of list
+  while (list.length > 0) list.pop(); //empty list first
+  for (const item of lorem) list.push(item);
+  assert.ok(list.remove(4, 10), "remove all element starting with index 4");
+  assert.is(list.tail, lorem[3], "updated tail");
+  assert.is(
+    list.getNode(3).next,
+    null,
+    "tail does not point forward to removed node"
+  );
+  assert.is(list.length, 4, "updated length");
+
+  // remove multiple from middle of list
+  while (list.length > 0) list.pop(); //empty list first
+  for (const item of lorem) list.push(item);
+  assert.ok(list.remove(2, 3), "remove items from middle of list");
+  assert.is(list.get(0), lorem[0]);
+  assert.is(list.get(1), lorem[1]);
+  assert.is(list.get(2), lorem[5]);
+  assert.is(list.get(3), lorem[6]);
+  assert.is(list.length, 4);
 });
 
 test.run();

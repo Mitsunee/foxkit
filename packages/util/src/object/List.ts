@@ -97,24 +97,75 @@ export class List<T> {
     return curr;
   }
 
-  get(n: number) {
-    const node = this.getNode(n);
+  get(index: number) {
+    const node = this.getNode(index);
     if (node) return node.value;
     return undefined;
   }
 
-  set(n: number, value: T) {
-    if (n == this.#length) {
+  set(index: number, value: T) {
+    if (index == this.#length) {
       this.push(value);
       return true;
     }
 
-    const node = this.getNode(n);
+    const node = this.getNode(index);
     if (!node) return false;
     node.value = value;
     return true;
   }
 
+  insert(index: number, value: T): boolean {
+    if (index < 0 || index > this.length) return false;
+    switch (index) {
+      case 0:
+        return !!this.unshift(value);
+      case this.length:
+        return !!this.push(value);
+      default: {
+        const node = new ListNode(value);
+        const prev = this.getNode(index - 1)!;
+        const next = prev.next!;
+        prev.next = node;
+        node.prev = prev;
+        next.prev = node;
+        node.next = next;
+        this.#length++;
+        return true;
+      }
+    }
+  }
+
+  remove(index: number, amount: number = 1) {
+    if (index < 0 || index > this.length || amount < 1) return false;
+    let curr = this.getNode(index)!;
+    if (!curr) return true; // this only happens when index == length == 0
+
+    for (let i = 0; i < amount; i++) {
+      const { prev, next } = curr;
+      curr.next = null;
+      curr.prev = null;
+      this.#length--;
+
+      if (prev) {
+        prev.next = next;
+      } else {
+        this.#head = next;
+      }
+
+      if (next) {
+        next.prev = prev;
+      } else {
+        this.#tail = prev;
+        break; // can't remove more, break early
+      }
+
+      curr = next;
+    }
+
+    return true;
+  }
+
   // WIP
-  // TODO: insert, remove, ...array methods, toArray, fromArray, maybe other methods?
+  // TODO: insertArray, insertList, toArray, fromArray, ...array methods, maybe other methods?
 }
