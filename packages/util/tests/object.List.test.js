@@ -265,4 +265,263 @@ test("can remove elements from list", () => {
   assert.is(list.length, 4);
 });
 
+test("Can convert List to Array", () => {
+  const list = new List();
+
+  assert.equal(list.toArray(), [], "return empty array for empty list");
+
+  for (const item of lorem) list.push(item);
+  assert.equal(list.toArray(), lorem, "return equal array to input");
+});
+
+test("Can create List from Array", () => {
+  const list = List.fromArray(lorem);
+
+  for (let i = 0; i < lorem.length; i++) {
+    assert.is(list.get(i), lorem[i], "created list is equal to input array");
+  }
+});
+
+test("Can insert Array", () => {
+  const list = new List();
+  assert.not(list.insertArray(-7, lorem), "reject negative index with false");
+
+  // can insert at the end of the list
+  list.push("first").push("second");
+  assert.ok(list.insertArray(2, lorem), "inserted array at end of list");
+  let expected = ["first", "second", ...lorem];
+  for (let i = 0; i < expected.length; i++) {
+    assert.is(
+      list.get(i),
+      expected[i],
+      `inserted array at end of list (index: ${i})`
+    );
+  }
+  assert.is(list.length, expected.length, "updated length after insertion");
+  assert.is(list.tail, expected[expected.length - 1], "updated tail correctly");
+
+  // can insert at the start of the list
+  while (list.length > 0) list.pop(); //empty list first
+  list.push("second-to-last").push("last");
+  assert.ok(list.insertArray(0, lorem), "inserted array at start of list");
+  expected = [...lorem, "second-to-last", "last"];
+  for (let i = 0; i < expected.length; i++) {
+    assert.is(
+      list.get(i),
+      expected[i],
+      `inserted array at start of list (index: ${i})`
+    );
+  }
+  assert.is(list.length, expected.length, "updated length after insertion");
+  assert.is(list.head, expected[0], "updated head correctly");
+
+  // can insert in the middle of the list
+  while (list.length > 0) list.pop(); //empty list first
+  list.push("first").push("second").push("second-to-last").push("last");
+  assert.ok(list.insertArray(2, lorem), "inserted array in middle of list");
+  expected = ["first", "second", ...lorem, "second-to-last", "last"];
+  for (let i = 0; i < expected.length; i++) {
+    assert.is(
+      list.get(i),
+      expected[i],
+      `inserted array in middle of list (index: ${i})`
+    );
+  }
+  assert.is(list.length, expected.length, "updated length after insertion");
+
+  assert.not(
+    list.insert(list.length + 1, lorem),
+    "reject index larger than length with false"
+  );
+});
+
+test("Can determine if a value is a List", () => {
+  assert.ok(List.isList(new List()), "returns true for new List");
+  assert.not(List.isList(null));
+  assert.not(List.isList(new Array()));
+});
+
+test("Can clone list", () => {
+  const list = List.fromArray(lorem);
+  const clone = list.clone();
+
+  assert.equal(clone.toArray(), list.toArray(), "lists are equal");
+  assert.equal(clone.length, list.length, "lists have the same length");
+
+  // modify original
+  list.push("foobar");
+  assert.is(list.length, clone.length + 1, "clone did not get larger");
+  assert.not(clone.tail === list.tail, "clone did not change");
+  list.pop();
+
+  // modify clone
+  clone.push("foobar");
+  assert.is(clone.length, list.length + 1, "original did not get larger");
+  assert.not(list.tail === clone.tail, "original did not change");
+});
+
+test("Can concat list", () => {
+  const list = new List();
+  list.push("first");
+  const expected = ["first", ...lorem];
+
+  // with Array
+  let output = list.concat(lorem);
+  for (let i = 0; i < expected.length; i++) {
+    assert.is(
+      output.get(i),
+      expected[i],
+      `inserted array at end of list (index: ${i})`
+    );
+  }
+  assert.is(output.length, expected.length, "updated length after insertion");
+
+  // with List
+  output = list.concat(List.fromArray(lorem));
+  for (let i = 0; i < expected.length; i++) {
+    assert.is(
+      output.get(i),
+      expected[i],
+      `inserted list at end of list (index: ${i})`
+    );
+  }
+  assert.is(output.length, expected.length, "updated length after insertion");
+});
+
+test("Can check if every element matches condition", () => {
+  const list = List.fromArray(lorem);
+
+  assert.ok(list.every(value => typeof value == "string"));
+  assert.not(list.every(value => value.length <= 5));
+});
+
+test("Can check if any element matches condition", () => {
+  const list = List.fromArray(lorem);
+
+  assert.ok(list.some(value => value.endsWith("sum"))); // ipsum should match
+  assert.not(list.some(value => value.length > 50));
+});
+
+test("Can filter List", () => {
+  const list = List.fromArray(lorem);
+  const test = value => value.length < 5;
+  const output = list.filter(test);
+  assert.equal(output.toArray(), lorem.filter(test));
+});
+
+test("Can find value/index by condition/value", () => {
+  const list = List.fromArray(lorem);
+  const test = value => value.endsWith("sum");
+
+  // found an element
+  assert.is(list.find(test), lorem.find(test));
+  assert.is(list.findIndex(test), lorem.findIndex(test));
+  assert.ok(list.includes("ipsum"));
+  assert.is(list.indexOf("ipsum"), 1);
+
+  // found none
+  const badTest = value => value.length > 50;
+  assert.is(list.find(badTest), undefined);
+  assert.is(list.findIndex(badTest), -1);
+  assert.not(list.includes("foobarbazbonk"));
+  assert.is(list.indexOf("foobarbazbonk"), -1);
+});
+
+test("Can run callback on every element", () => {
+  const list = List.fromArray(lorem);
+
+  let sum = 0;
+  list.forEach(value => {
+    sum += value.length;
+  });
+
+  assert.is(
+    sum,
+    lorem.reduce((s, val) => s + val.length, 0)
+  );
+});
+
+test("Can map List", () => {
+  const list = List.fromArray(lorem);
+  const cb = value => value.length;
+  assert.equal(list.map(cb)?.toArray(), lorem.map(cb));
+});
+
+test("Can reduce List", () => {
+  const list = List.fromArray(lorem);
+  const reducer = (a, v) => a + v.length;
+  assert.is(list.reduce(reducer, 0), lorem.reduce(reducer, 0));
+});
+
+test("Can reverse List", () => {
+  const list = List.fromArray(lorem).reverse();
+  assert.equal(list.toArray(), [...lorem].reverse());
+});
+
+test("Can get slice of List", () => {
+  const list = List.fromArray(lorem);
+
+  assert.equal(
+    list.slice(2).toArray(),
+    lorem.slice(2),
+    "positive start, no end"
+  );
+  assert.equal(
+    list.slice(2, 6).toArray(),
+    lorem.slice(2, 6),
+    "positive start and end"
+  );
+  assert.equal(
+    list.slice(1, -4).toArray(),
+    lorem.slice(1, -4),
+    "positive start, negative end"
+  );
+  assert.equal(
+    list.slice(-3).toArray(),
+    lorem.slice(-3),
+    "negative start, no end"
+  );
+  assert.equal(
+    list.slice(-3, 5).toArray(),
+    lorem.slice(-3, 5),
+    "negative start, positive end"
+  );
+  assert.equal(
+    list.slice(-5, -2).toArray(),
+    lorem.slice(-5, -2),
+    "negative start, negative end"
+  );
+  assert.equal(list.slice(4, 2).toArray(), [], "empty for impossible slice");
+});
+
+test("Can sort list", () => {
+  const list = List.fromArray(lorem);
+
+  // with no callback
+  let output = list.sort();
+  assert.equal(output.toArray(), [...lorem].sort());
+
+  // with callback
+  const cb = (a, b) => a.length - b.length;
+  output = list.sort(cb);
+  assert.equal(output.toArray(), [...lorem].sort(cb));
+});
+
+test("Can join list", () => {
+  const list = new List();
+
+  assert.is(list.join(","), "", "return empty string for empty list");
+  list.push("first");
+  assert.is(list.join(","), "first", "return only head with no trailing comma");
+  list.pop();
+  list.insertArray(0, lorem);
+  assert.is(list.join(), lorem.join(), "join list with default separator");
+  assert.is(
+    list.join("! "),
+    lorem.join("! "),
+    "join list with custom separator"
+  );
+  assert.is(list.toString(), lorem.toString(), "use toString method");
+});
+
 test.run();
