@@ -7,6 +7,7 @@ const config = [
   makeConfig({ input: "src/object/index.ts", key: "./object" }),
   makeConfig({ input: "src/range/index.ts", key: "./range" }),
   makeConfig({ input: "src/sleep/index.ts", key: "./sleep" }),
+  makeConfig({ input: "src/timers/index.ts", key: "./timers" }),
   makeConfig({ input: "src/typeOf/index.ts", key: "./typeOf" })
 ];
 

@@ -41,6 +41,11 @@
       "import": "./dist/sleep.js",
       "require": "./dist/sleep.cjs"
     },
+    "./timers": {
+      "types": "./timers.d.ts",
+      "import": "./dist/timers.js",
+      "require": "./dist/timers.cjs"
+    },
     "./typeOf": {
       "types": "./typeOf.d.ts",
       "import": "./dist/typeOf.js",
