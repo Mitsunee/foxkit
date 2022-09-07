@@ -1,6 +1,6 @@
 type ValueOf<T> = T[keyof T];
 
-export function pickByKey<T, K extends Array<keyof T>>(
+export function pickByKey<T extends object, K extends Array<keyof T>>(
   obj: T,
   keys: K
 ): Pick<T, K[number]> {

@@ -1,6 +1,6 @@
 type ValueOf<T> = T[keyof T];
 
-export function omitByKey<T, K extends Array<keyof T>>(
+export function omitByKey<T extends object, K extends Array<keyof T>>(
   obj: T,
   keys: K
 ): Omit<T, K[number]> {
