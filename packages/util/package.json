@@ -111,8 +111,8 @@
     "@foxkit/rollup-config": "*",
     "@rollup/plugin-babel": "^5.3.1",
     "@rollup/plugin-node-resolve": "^13.3.0",
-    "@typescript-eslint/eslint-plugin": "^5.26.0",
-    "@typescript-eslint/parser": "^5.26.0",
+    "@typescript-eslint/eslint-plugin": "^5.36.2",
+    "@typescript-eslint/parser": "^5.36.2",
     "clean-publish": "^4.0.0",
     "eslint": "^8.12.0",
     "eslint-config-foxkit": "*",
@@ -121,8 +121,8 @@
     "nano-staged": "^0.8.0",
     "prettier": "^2.6.2",
     "rollup": "^2.75.3",
-    "tsm": "^2.2.1",
-    "typescript": "^4.7.2",
+    "tsm": "^2.2.2",
+    "typescript": "^4.8.2",
     "uvu": "^0.5.3"
   }
 }
