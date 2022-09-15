@@ -3,15 +3,16 @@
 type CallbackFn = () => void;
 type ErrorHandler = (err: unknown) => void;
 
-export class Timeout {
+export class Interval {
   // eslint-disable-next-line no-undef
-  #ref: NodeJS.Timeout | null = null; // dear @types/node, why is this not number?
+  #ref: NodeJS.Timer | null = null; // dear @types/node, why is this not number?
   #running: number | false = false;
+  #lastActivation?: number;
   #length: number;
   #callback: CallbackFn;
   #catch?: ErrorHandler;
 
-  constructor(callback: CallbackFn, length: number = 0) {
+  constructor(callback: CallbackFn, length: number) {
     this.#length = length;
     this.#callback = callback;
   }
@@ -24,6 +25,10 @@ export class Timeout {
     return this.#running === false ? null : this.#running;
   }
 
+  get lastActivation() {
+    return this.#lastActivation ?? null;
+  }
+
   isRunning() {
     return this.#running === false ? false : true;
   }
@@ -31,8 +36,7 @@ export class Timeout {
   start() {
     if (this.#ref) return this;
     const wrappedCallback = () => {
-      this.#ref = null;
-      this.#running = false;
+      this.#lastActivation = Date.now();
       try {
         this.#callback();
       } catch (e) {
@@ -41,14 +45,14 @@ export class Timeout {
         } else throw e;
       }
     };
-    this.#ref = setTimeout(wrappedCallback, this.#length);
+    this.#ref = setInterval(wrappedCallback, this.#length);
     this.#running = Date.now();
     return this;
   }
 
-  cancel() {
+  stop() {
     if (!this.#ref) return this;
-    clearTimeout(this.#ref);
+    clearInterval(this.#ref);
     this.#ref = null;
     this.#running = false;
     return this;
