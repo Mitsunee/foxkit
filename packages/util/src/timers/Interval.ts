@@ -1,4 +1,4 @@
-// TODO: support units as string as length parameter
+import { convertUnits } from "./convertUnits";
 
 type CallbackFn = () => void;
 type ErrorHandler = (err: unknown) => void;
@@ -12,8 +12,8 @@ export class Interval {
   #callback: CallbackFn;
   #catch?: ErrorHandler;
 
-  constructor(callback: CallbackFn, length: number) {
-    this.#length = length;
+  constructor(callback: CallbackFn, length: number | string) {
+    this.#length = typeof length === "number" ? length : convertUnits(length);
     this.#callback = callback;
   }
 

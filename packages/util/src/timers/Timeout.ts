@@ -1,4 +1,4 @@
-// TODO: support units as string as length parameter
+import { convertUnits } from "./convertUnits";
 
 type CallbackFn = () => void;
 type ErrorHandler = (err: unknown) => void;
@@ -12,7 +12,8 @@ export class Timeout {
   #catch?: ErrorHandler;
 
   constructor(callback: CallbackFn, length: number = 0) {
-    this.#length = length;
+    this.#length =
+      typeof length === "number" ? length : convertUnits(length, false);
     this.#callback = callback;
   }
 
