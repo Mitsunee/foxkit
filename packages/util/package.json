@@ -86,6 +86,7 @@
     "dist",
     "clamp.d.ts",
     "dedent.d.ts",
+    "object.d.ts",
     "range.d.ts",
     "sleep.d.ts",
     "timers.d.ts",
