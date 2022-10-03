@@ -1,4 +1,5 @@
 const config = {
+  plugins: ["no-await-in-promise"],
   parserOptions: { ecmaVersion: 2021 },
   env: { node: true, es2021: true },
   rules: {
@@ -9,7 +10,14 @@ const config = {
     "no-else-return": "warn",
     "no-fallthrough": ["error", { commentPattern: "break[\\s\\w]*omitted" }],
     "no-use-before-define": ["error", { variables: true }],
-    "prefer-template": "warn"
+    "prefer-template": "warn",
+    "no-return-await": "warn",
+    "operator-assignment": ["warn", "always"],
+    "logical-assignment-operators":
+      parseInt(process.versions.node) <= 14
+        ? ["error", "never"]
+        : ["warn", "always", { enforceForIfStatements: true }],
+    "no-await-in-promise/no-await-in-promise": "warn"
   },
   overrides: [
     {
