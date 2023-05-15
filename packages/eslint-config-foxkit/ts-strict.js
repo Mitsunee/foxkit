@@ -1,14 +1,15 @@
+const plugin = require("@typescript-eslint/eslint-plugin");
 const ts = require("./ts.js");
 
 const tsOverrides = ts.overrides[0];
 
 module.exports = {
   plugins: ts.plugins,
-  extends: ["plugin:@typescript-eslint/recommended"],
   overrides: [
     {
       ...tsOverrides,
       rules: {
+        ...plugin.configs.recommended.rules,
         "prefer-const": "warn", // warn is good enough
         "@typescript-eslint/ban-ts-comment": "off", // just no, refuse
         "@typescript-eslint/ban-types": "off", // this bans `{}` and says to use `object` instead. `object` incorrectly used Set, Map and such
